@@ -1,3 +1,4 @@
+import MainCarousal from '../components/MainCarousal';
 import PopularCard from '../components/PopularCard';
 import TasteCard from '../components/TasteCard';
 import './mainSection.css'
@@ -32,14 +33,16 @@ const MainSection = () => {
                     <p id="taste_header_second">See all</p>
                 </div>
                 <div class="tastecards_outer_container">
-                <div className="tastecards_container">
-                    <TasteCard />
-                    <TasteCard />                <TasteCard />                <TasteCard />
-                </div>
+                    <div className="tastecards_container">
+                        <TasteCard />
+                        <TasteCard />                <TasteCard />                <TasteCard />
+                    </div>
                 </div>
 
             </div>
-
+            <div className="main_carousal_section">
+                <MainCarousal />
+            </div>
             <div className="popular_section">
                 <div className="popular_header">
                     <p id="popular_header_first">Popular Once</p>

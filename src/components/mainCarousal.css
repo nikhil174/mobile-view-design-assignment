@@ -1,0 +1,40 @@
+.main_carousal {
+    position: relative;
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    border-radius: 20px;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.main_carousal_dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.main_carousal_dot {
+    height: 10px;
+    width: 10px;
+    background-color: #afb2b5;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.main_carousal_dot_active {
+    background-color: #52565a;
+}

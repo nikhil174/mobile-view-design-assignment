@@ -1,16 +1,18 @@
 .main_container {
     width: 100%;
 }
+
 .main_header {
     width: 100%;
     padding: 30px 0px 10px 20px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border-bottom: 1px solid  #DADADA;
-    display:flex;
+    border-bottom: 1px solid #DADADA;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     position: fixed;
     background: white;
+    z-index: 99;
 }
 
 #main_header_first {
@@ -90,7 +92,7 @@
 #taste_header_second {
     color: #8391A1;
     font-size: 14px;
-    font-weight: 600; 
+    font-weight: 600;
 }
 
 .popular_section {
@@ -107,10 +109,15 @@
 
 .tastecards_container {
     display: flex;
-    gap : 20px;
+    gap: 20px;
 }
 
 .tastecards_outer_container {
     overflow-x: auto;
     white-space: nowrap;
+}
+
+.main_carousal_section {
+    width: 330px;
+    margin: 20px;
 }
