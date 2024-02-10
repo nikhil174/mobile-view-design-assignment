@@ -1,37 +1,54 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import './item.css'
 
 const Item = () => {
-
-    const [data, setData] = useState({
-        "restaurant_name": "Rahul Store",
-        "location": {
-            "location_id": 1,
-            "location_address": "B-6/2, Model Town 1, Model Town Phase I, Mukherjee Nagar, New Delhi, Delhi 110009",
-            "location_address_2": "Model Town",
-            "location_zip_code": 110009,
-            "location_lat": 28.703186,
-            "location_long": 77.19393,
-            "location_locality": "Model Town",
-            "city_name": "Delhi",
-            "state_name": "Delhi",
-            "city_id": null,
-            "country_id": "103",
-            "state_id": "35",
-            "update_count": "0"
+    const [activeIndex, setActiveIndex] = useState(0);
+    const data = [
+        {
+            id: "1",
+            src: "https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+            alt: "",
         },
-        "images": [
-            {
-                "url": "https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
-            }
-        ],
-        "details": "As a college student, much of your time will be spent interacting with texts of all types, shapes, sizes, and delivery methods. Sound interesting? Oh, it is. In the following sections, we’ll explore the nature of texts, what they will mean to you, and how to explore and use them effectively."
-    })
+        {
+            id: "2",
+            src: "https://images.unsplash.com/photo-1682687219356-e820ca126c92?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            alt: "",
+        },
+        {
+            id: "3",
+            src: "https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+            alt: "",
+        },
+    ];
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setActiveIndex(prevIndex => (prevIndex + 1) % data.length);
+        }, 5000);
+
+        return () => {
+            clearInterval(timer);
+        };
+    }, [data.length]);
 
     return (
         <div className="item_container">
             <div className="item_img">
-                <img src={data['images'][0]['url']} alt="" />
+                {data.map((item, idx) => (
+                    <img
+                        src={item['src']}
+                        className={`${activeIndex === idx ? 'active' : ''}`}
+                        alt=""
+                    />
+                ))}
+            </div>
+            <div className="item_carousal_dots">
+                {data.map((item, idx) => (
+                    <div
+                        key={item.id}
+                        className={`item_carousal_dot ${activeIndex === idx ? 'item_carousal_dot_active' : ''}`}
+                    />
+                ))}
             </div>
             <div className="item_details">
                 <div className="item_heading">

@@ -33,16 +33,16 @@ const MainCarousal = () => {
 
     return (
         <>
-            <div className="main_carousal">
-                {data.map((item, idx) => (
+            {data.map((item, idx) => (
+                <div className="main_carousal">
                     <img
                         key={item.id}
                         src={item.src}
                         alt={item.alt}
                         className={`slide ${activeIndex === idx ? 'active' : ''}`}
                     />
-                ))}
-            </div>
+                </div>
+            ))}
             <div className="main_carousal_dots">
                 {data.map((item, idx) => (
                     <div

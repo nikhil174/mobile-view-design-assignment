@@ -9,8 +9,8 @@ function App() {
     <div className="App">
       {/* <Login /> */}
       {/* <OtpVerification /> */}
-      {/* <Item /> */}
-      <MainSection />
+      <Item />
+      {/* <MainSection /> */}
     </div>
   );
 }

@@ -6,13 +6,20 @@
 }
 
 .item_img {
-    position: absolute;
+    position: relative;
 }
 
 .item_img>img {
     width: 100%;
     aspect-ratio: 20 / 25;
     object-fit: cover;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.active {
+    opacity: 1 !important;
 }
 
 .item_details {
@@ -45,6 +52,7 @@
     line-height: 19.2px;
     color: #505259;
 }
+
 .item_offers {
     margin: 0px 30px 0px 30px;
     color: #D39171;
@@ -59,4 +67,28 @@
     font-size: 14px;
     font-weight: 500;
     line-height: 16.8px;
+}
+
+.item_carousal_dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    position: absolute;
+    top: 420px;
+    left: 160px;
+}
+
+.item_carousal_dot {
+    height: 10px;
+    width: 10px;
+    background-color: #afb2b5;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 99;
+    transition: 0.5s ease-in-out;
+}
+
+.item_carousal_dot_active {
+    background-color: #e34f44;
+    width: 20px;
 }
