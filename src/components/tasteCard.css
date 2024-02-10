@@ -1,0 +1,35 @@
+.tastecard_container {
+    box-sizing: border-box;
+    width: 140px;
+    background-color: white;
+    border-radius: 20px;
+    height: 200px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.tastcard_img img {
+    width: 140px;
+    height: 120px;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 20px 20px 0 0;
+}
+
+.tastecard_detail {
+    padding: 5px 10px 10px 10px;
+    overflow: hidden;
+}
+
+.tastecard_detail_name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #52565a;
+}
+
+.tastecard_detail_place {
+    padding-top: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #8391A1;
+    white-space: normal;
+}

@@ -1,0 +1,115 @@
+.main_container {
+    width: 100%;
+}
+.main_header {
+    width: 100%;
+    padding: 30px 0px 10px 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-bottom: 1px solid  #DADADA;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    background: white;
+}
+
+#main_header_first {
+    font-size: 14px;
+    font-weight: 700;
+    color: #8391A1;
+    letter-spacing: 0.6px;
+}
+
+#main_header_second {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+}
+
+.user_details {
+    display: flex;
+    margin: 76px 20px 80px 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user_name {
+    background-color: #f3f5f6;
+    padding: 40px 20px 30px 20px;
+    border-radius: 0 0 20px 20px;
+    flex: 0.5;
+}
+
+#user_name_first {
+    color: #8391A1;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+}
+
+#user_name_second {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.main_offer_wallet {
+    flex: 0.4;
+    display: flex;
+    gap: 25px;
+}
+
+.main_offer_wallet img {
+    height: 50px;
+    width: 50px;
+}
+
+.main_offer_wallet p {
+    font-size: 14px;
+    font-weight: 700;
+    color: #8391A1;
+}
+
+.your_taste_section {
+    margin: 0 20px;
+}
+
+.taste_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 15px;
+}
+
+#taste_header_first {
+    color: #52565a;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+}
+
+#taste_header_second {
+    color: #8391A1;
+    font-size: 14px;
+    font-weight: 600; 
+}
+
+.popular_section {
+    margin: 0 20px;
+}
+
+#popular_header_first {
+    color: #52565a;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+}
+
+.tastecards_container {
+    display: flex;
+    gap : 20px;
+}
+
+.tastecards_outer_container {
+    overflow-x: auto;
+    white-space: nowrap;
+}
