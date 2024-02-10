@@ -1,0 +1,75 @@
+.login_container {
+    display: flex;
+    margin: 262px 20px 0 20px;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.login_form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#enter_mobile_number {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1E232C;
+    line-height: 33.8px;
+}
+
+#verification_text {
+    font-size: 15px;
+    font-weight: 500;
+    color: #8391A1;
+    line-height: 24px;
+    letter-spacing: 0.6px;
+}
+
+#mobileNumber {
+    height: 56px;
+    margin-top: 28px;
+    border: 1px solid #DADADA;
+    border-radius: 8px;
+    padding-left: 20px;
+    font-size: 15px;
+    outline: none;
+    width: 330px;
+}
+
+#login_button {
+    height: 56px;
+    margin-top: 28px;
+    border: none;
+    border-radius: 8px;
+    background-color: #e34f44;
+    color: white;
+    font-size: 15px;
+    width: 100%;
+}
+
+#resend_code_text {
+    align-self: center;
+    line-height: 21px;
+    font-size: 15px;
+    margin-top: 26px;
+}
+
+.otp_back {
+    margin-bottom: 163px;
+}
+
+.otp_back>span {
+    padding: 21px 8px 9px 19px;
+    align-items: center;
+    border: 1px solid #E8ECF4;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.otp_container {
+    display: flex;
+    margin: 70px 20px 0 20px;
+    flex-direction: column;
+    text-align: start;
+}
