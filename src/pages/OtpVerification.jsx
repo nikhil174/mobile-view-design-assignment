@@ -1,20 +1,121 @@
 import './login.css'
+import { useEffect, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import qs from 'qs';
+import axios from 'axios';
+import Config from '../config';
 
 const OtpVerification = () => {
+    const navigate = useNavigate();
+
+    const location = useLocation();
+    const phoneNumber = location.state?.phoneNumber;
+    useEffect(() => {
+        if (!phoneNumber) {
+            navigate('/login');
+        }
+    }, [navigate]);
+
+    const [otp, setOtp] = useState(new Array(6).fill(""));
+
+    const inputRefs = useRef([]);
+    useEffect(() => {
+        if (inputRefs.current[0]) {
+            inputRefs.current[0].focus();
+        }
+    }, [])
+
+    const handleChange = (index, e) => {
+        const value = e.target.value;
+        if (isNaN(value)) return;
+        const newOtp = [...otp]
+        newOtp[index] = value.substring(value.length - 1);
+        setOtp(newOtp);
+
+        if (value && index < 5 && inputRefs.current[index + 1]) {
+            inputRefs.current[index + 1].focus();
+        }
+    }
+
+    const handleClick = (index) => {
+        inputRefs.current[index].setSelectionRange(1, 1);
+    }
+
+    const handleKeyDown = (index, e) => {
+        if (e.key === 'Backspace' && !otp[index] && index > 0 && inputRefs.current[index - 1]) {
+            inputRefs.current[index - 1].focus();
+        }
+    }
+
+    const verify = async (e) => {
+        e.preventDefault();
+        const combineOtp = otp.join("");
+        if (combineOtp.length !== 6) {
+            console.log('Invalid otp');
+            return;
+        }
+        console.log(combineOtp);
+
+        const data = qs.stringify({
+            'phone': phoneNumber,
+            'otp': combineOtp,
+            'dial_code': '+91' 
+        });
+        try {
+            const response = await axios.post(`${Config.ip}/pwa/user/login`, data, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+            });
+            if (response.data.status === 'Success') {
+                const userData = {
+                    username: response.data.data.user_name,
+                    accessToken: response.data.data.token
+                };
+                localStorage.setItem('userData', JSON.stringify(userData));
+                navigate('/');
+            }
+            else
+                throw new Error('Something went wrong');  
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <>
             <div className='otp_container'>
-                <div className='otp_back'>
+                <div
+                    className='otp_back'
+                    onClick={() => { navigate('/login') }}
+                >
                     <span>
-                        <img 
-                        src="arrow_back.svg" alt="back_arrow_logo" height={24} width={24} />                        
+                        <img
+                            src="arrow_back.svg" alt="back_arrow_logo" height={24} width={24} />
                     </span>
                 </div>
                 <p id="enter_mobile_number">OTP Verification</p>
                 <p id="verification_text">Enter the verification code we just sent on your Mobile Number</p>
-                <form className='login_form'>
-                    <input type="tel" id="mobileNumber" name="mobileNumber" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="Enter Mobile Number" required />
-                    <button type="submit" id="login_button">Verify</button>
+                <form className='otp_form'>
+                    {
+                        otp.map((value, index) => {
+                            return <input
+                                key={index}
+                                type="text"
+                                ref={(input) => inputRefs.current[index] = input}
+                                value={value}
+                                onChange={(e) => handleChange(index, e)}
+                                onClick={() => handleClick(index)}
+                                onKeyDown={(e) => handleKeyDown(index, e)}
+                                className='otp_input'
+                            />
+                        })
+                    }
+                    <button
+                        type="submit"
+                        id="login_button"
+                        onClick={(e) => verify(e)}
+                    >Verify</button>
                 </form>
                 <p id="resend_code_text">Didn't received code? Resend</p>
             </div>

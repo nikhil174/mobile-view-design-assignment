@@ -1,24 +1,22 @@
 import { useEffect, useState } from "react";
 import './item.css'
+import { useLocation } from "react-router-dom";
+import { useUserContext } from "../context/userContext";
 
 const Item = () => {
     const [activeIndex, setActiveIndex] = useState(0);
+    const location = useLocation();
+    const itemId = location.state?.id;
+
+    const { restaurants } = useUserContext();
+    console.log(restaurants)
+
     const data = [
         {
             id: "1",
             src: "https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
             alt: "",
-        },
-        {
-            id: "2",
-            src: "https://images.unsplash.com/photo-1682687219356-e820ca126c92?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            alt: "",
-        },
-        {
-            id: "3",
-            src: "https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
-            alt: "",
-        },
+        }
     ];
 
     useEffect(() => {
@@ -36,6 +34,7 @@ const Item = () => {
             <div className="item_img">
                 {data.map((item, idx) => (
                     <img
+                        key={item.id}
                         src={item['src']}
                         className={`${activeIndex === idx ? 'active' : ''}`}
                         alt=""
