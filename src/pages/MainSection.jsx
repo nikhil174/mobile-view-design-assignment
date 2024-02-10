@@ -1,3 +1,4 @@
+import PopularCard from '../components/PopularCard';
 import TasteCard from '../components/TasteCard';
 import './mainSection.css'
 
@@ -39,12 +40,17 @@ const MainSection = () => {
 
             </div>
 
-            {/* <div className="popular_section">
+            <div className="popular_section">
                 <div className="popular_header">
                     <p id="popular_header_first">Popular Once</p>
                 </div>
-                <p>cards</p>
-            </div> */}
+                <div className="popular_card_container">
+                    <PopularCard />
+                    <PopularCard />
+                    <PopularCard />
+                    <PopularCard />
+                </div>
+            </div>
         </div>
     );
 }

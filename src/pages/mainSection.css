@@ -70,7 +70,7 @@
 }
 
 .your_taste_section {
-    margin: 0 20px;
+    margin: 0 20px 10px 20px;
 }
 
 .taste_header {
@@ -102,6 +102,7 @@
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 0.6px;
+    margin-bottom: 20px;
 }
 
 .tastecards_container {

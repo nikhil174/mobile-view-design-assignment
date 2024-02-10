@@ -1,0 +1,72 @@
+.popularcard_container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.popularcard_img img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.popularcard_detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 5px;
+}
+
+.popularity_price {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#popularity_first {
+    color: #52565a;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#popularity_second {
+    color: #52565a;
+    font-size: 12px;
+    font-weight: 500;  
+}
+#price_first {
+    color: #52565a;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#price_second {
+    color: #52565a;
+    font-size: 12px;
+    font-weight: 500;  
+}
+
+.popularcard_offers {
+    color: #D39171;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 14.4px;
+    margin-top: 10px;
+}
+
+.popularcard_detail_place {
+    color: #afb2b5;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.popularcard_detail_name {
+    color: #52565a;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    margin-bottom: 0;
+}
