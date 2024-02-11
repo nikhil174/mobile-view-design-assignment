@@ -92,3 +92,13 @@
     background-color: #e34f44;
     width: 20px;
 }
+
+#star {
+    font-size: 28px;
+}
+
+.item_rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}

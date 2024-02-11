@@ -3,7 +3,7 @@ import MainCarousal from '../components/MainCarousal';
 import PopularCard from '../components/PopularCard';
 import TasteCard from '../components/TasteCard';
 import './mainSection.css'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Config from '../config';
 import axios from 'axios';
 import { useUserContext } from '../context/userContext';
@@ -17,7 +17,6 @@ const MainSection = () => {
 
     // Redirect to login if user data is not available or access token is missing
     useEffect(() => {
-        console.log(accessToken);
         if (accessToken == null) {
             let userData = localStorage.getItem('userData');
             userData = userData ? JSON.parse(userData) : undefined;
@@ -48,7 +47,6 @@ const MainSection = () => {
                 }
             } catch (error) {
                 console.log(error);
-                // Handle error here, e.g., display an error message
             }
         };
         if (accessToken) {
@@ -57,14 +55,17 @@ const MainSection = () => {
     }, [accessToken]);
 
     const handleClick = (id) => {
-        console.log(id);
         navigate(`/item/${id}`, { state: { id } });
     }
 
     return (
         <div className='main_container'>
             <div className="main_header">
-                <p id="main_header_first">Pre Order from</p>
+                <p id="main_header_first">Pre Order from
+                    <span className="material-symbols-outlined">
+                        person
+                    </span>
+                </p>
                 <p id="main_header_second">Connaught Place</p>
             </div>
             <div className="user_details">
@@ -87,7 +88,7 @@ const MainSection = () => {
             <div className="your_taste_section">
                 <div className="taste_header">
                     <p id="taste_header_first">Your taste</p>
-                    <p id="taste_header_second">See all</p>
+                    <Link to="#" id="taste_header_second">See all</Link>
                 </div>
                 <div className="tastecards_outer_container">
                     <div className="tastecards_container">
@@ -115,10 +116,21 @@ const MainSection = () => {
                     <p id="popular_header_first">Popular Once</p>
                 </div>
                 <div className="popular_card_container">
-                    <PopularCard />
-                    <PopularCard />
-                    <PopularCard />
-                    <PopularCard />
+                    {
+                        restaurants && restaurants.map((restaurant) => {
+                            return <PopularCard
+                                key={restaurant.restaurant_id}
+                                id={restaurant.restaurant_id}
+                                name={restaurant.restaurant_name}
+                                imgSrc={restaurant.images[0].url}
+                                location={`${restaurant?.location?.location_address_2}, ${restaurant?.location?.city_name}`}
+                                handleClick={handleClick}
+                                cost={restaurant.avg_cost_for_two}
+                                currency={restaurant.currency?.symbol}
+                                rating={restaurant['rating']['restaurant_avg_rating']}
+                            />
+                        })
+                    }
                 </div>
             </div>
         </div>

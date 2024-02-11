@@ -5,10 +5,12 @@ import Login from './pages/Login';
 import OtpVerification from './pages/OtpVerification';
 import MainSection from './pages/MainSection';
 import { UserProvider } from './context/userContext';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
     <UserProvider>
+      <ToastContainer />
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />

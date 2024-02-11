@@ -4,6 +4,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import qs from 'qs';
 import axios from 'axios';
 import Config from '../config';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const OtpVerification = () => {
     const navigate = useNavigate();
@@ -54,12 +56,11 @@ const OtpVerification = () => {
             console.log('Invalid otp');
             return;
         }
-        console.log(combineOtp);
 
         const data = qs.stringify({
             'phone': phoneNumber,
             'otp': combineOtp,
-            'dial_code': '+91' 
+            'dial_code': '+91'
         });
         try {
             const response = await axios.post(`${Config.ip}/pwa/user/login`, data, {
@@ -76,9 +77,31 @@ const OtpVerification = () => {
                 navigate('/');
             }
             else
-                throw new Error('Something went wrong');  
+                throw new Error('Something went wrong');
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    const handleResend = async () => {
+        const data = qs.stringify({
+            'phone': phoneNumber,
+            'dial_code': '+91'
+        });
+        try {
+            const response = await axios.post(`${Config.ip}/pwa/user/register`, data, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+            });
+            if (response.data.status === 'Success') {
+                toast.success('OTP Sent!');
+            } else {
+                throw new Error('Something went wrong');
+            }
+        } catch (error) {
+            toast.error('Failed to Send OTP.');
+            console.error(error);
         }
     }
 
@@ -89,9 +112,8 @@ const OtpVerification = () => {
                     className='otp_back'
                     onClick={() => { navigate('/login') }}
                 >
-                    <span>
-                        <img
-                            src="arrow_back.svg" alt="back_arrow_logo" height={24} width={24} />
+                    <span className="material-symbols-outlined">
+                        chevron_left
                     </span>
                 </div>
                 <p id="enter_mobile_number">OTP Verification</p>
@@ -117,7 +139,14 @@ const OtpVerification = () => {
                         onClick={(e) => verify(e)}
                     >Verify</button>
                 </form>
-                <p id="resend_code_text">Didn't received code? Resend</p>
+                <p id="resend_code_text">Didn't received code?
+                    <span
+                        id="resendbtn"
+                        onClick={handleResend}
+                    >
+                        {" "}Resend
+                    </span>
+                </p>
             </div>
         </>
     );

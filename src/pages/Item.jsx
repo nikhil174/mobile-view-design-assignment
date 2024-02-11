@@ -1,50 +1,51 @@
 import { useEffect, useState } from "react";
 import './item.css'
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/userContext";
 
 const Item = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const location = useLocation();
     const itemId = location.state?.id;
+    const navigate = useNavigate();
 
-    const { restaurants } = useUserContext();
-    console.log(restaurants)
+    const { restaurants, accessToken } = useUserContext();
 
-    const data = [
-        {
-            id: "1",
-            src: "https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
-            alt: "",
+    useEffect(() => {
+        if (!accessToken) {
+            navigate('/login');
         }
-    ];
+    }, [accessToken])
+
+    const restaurant = restaurants.find(r => r.restaurant_id === itemId);
+
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setActiveIndex(prevIndex => (prevIndex + 1) % data.length);
+            setActiveIndex(prevIndex => (prevIndex + 1) % restaurant['images'].length);
         }, 5000);
 
         return () => {
             clearInterval(timer);
         };
-    }, [data.length]);
+    }, [restaurant['images'].length]);
 
     return (
         <div className="item_container">
             <div className="item_img">
-                {data.map((item, idx) => (
+                {restaurant['images'].map((item, idx) => (
                     <img
-                        key={item.id}
-                        src={item['src']}
+                        key={item['url']?.split('photo-')[1]}
+                        src={item['url']}
                         className={`${activeIndex === idx ? 'active' : ''}`}
                         alt=""
                     />
                 ))}
             </div>
             <div className="item_carousal_dots">
-                {data.map((item, idx) => (
+                {restaurant['images'].map((item, idx) => (
                     <div
-                        key={item.id}
+                        key={item['url']?.split('photo-')[1]}
                         className={`item_carousal_dot ${activeIndex === idx ? 'item_carousal_dot_active' : ''}`}
                     />
                 ))}
@@ -52,11 +53,11 @@ const Item = () => {
             <div className="item_details">
                 <div className="item_heading">
                     <div className="item_name_section">
-                        <p className="item_name">Lazy Bear</p>
-                        <p className="item_location">Connaught Place, New Delhi</p>
+                        <p className="item_name">{restaurant.restaurant_name}</p>
+                        <p className="item_location">{`${restaurant?.location?.location_address_2}, ${restaurant?.location?.city_name}`}</p>
                     </div>
                     <div className="item_rating">
-                        4.5
+                    <span id="star">☆</span>{restaurant['rating']['restaurant_avg_rating']}
                     </div>
                 </div>
                 <div className="item_offers">

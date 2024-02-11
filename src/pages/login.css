@@ -35,6 +35,7 @@
     font-size: 15px;
     outline: none;
     width: 312px;
+    background-color: #e9e8e8;
 }
 
 #login_button {
@@ -60,7 +61,7 @@
 }
 
 .otp_back>span {
-    padding: 21px 8px 9px 19px;
+    padding: 16px;
     align-items: center;
     border: 1px solid #E8ECF4;
     border-radius: 12px;
@@ -79,9 +80,17 @@
 }
 
 .otp_input {
-    width: 40px;
-    height: 40px;
-    margin: 5px;
+    width: 41px;
+    height: 41px;
+    margin: 6px;
     text-align: center;
     font-size: 16px;
+    background-color: #e9e8e8;
+    border: 1px solid #E8ECF4;
+    border-radius: 2px;
+}
+
+#resendbtn {
+    color: #5574C6;
+    cursor: pointer;
 }
